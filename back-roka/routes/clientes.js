@@ -6,6 +6,7 @@ router.get('/',ctlr.getClientes);
 router.post('/', ctlr.postClientes);
 router.get('/:id', ctlr.getClienteById);
 router.put('/:id',ctlr.putCliente);
+router.delete('/:id',ctlr.deleteCliente)
 
 
 module.exports=router;

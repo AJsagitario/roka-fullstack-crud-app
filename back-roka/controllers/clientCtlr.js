@@ -60,8 +60,8 @@ const deleteCliente=(req, res) => {
 
 module.exports= {
     getClientes,
-    getClienteById,
     postClientes,
+    getClienteById,
     putCliente,
     deleteCliente
 };
