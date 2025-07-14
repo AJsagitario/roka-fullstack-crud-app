@@ -58,10 +58,27 @@ const deleteCliente=(req, res) => {
     });
 };
 
+const lgCli=(req,res) => {
+    const {correo,contra} = req.body;
+
+    if(!correo || !contra) {
+        return res.status(400).json({error: 'Los campos son obligatorios'});
+    }
+
+    const sql='SELECT * FROM cliente WHERE correo=? AND contra =?';
+    db.query(sql, [contra,contra], (err,result) => {
+        if (err) return res.status(500).json({error: 'Error en la database'});
+        if (result.length === 0) return res.status(401).json({error: 'Credendiales incorrectas'});
+        
+        res.status(200).json({message: 'Ingreso exitoso', cliente: result[0]});
+    });
+};
+
 module.exports= {
     getClientes,
     postClientes,
     getClienteById,
     putCliente,
-    deleteCliente
+    deleteCliente,
+    lgCli
 };
